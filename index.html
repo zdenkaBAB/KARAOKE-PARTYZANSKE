@@ -46,7 +46,7 @@ function renderCatalog(){const q=$('search').value.toLocaleLowerCase('sk').trim(
 function renderMobileCatalog(){const el=$('mobileCatalog');if(!el)return;const q=($('mobileCatalogSearch')?.value||'').toLocaleLowerCase('sk').trim();const list=SONGS.filter(s=>(s.title+' '+s.artist).toLocaleLowerCase('sk').includes(q));el.innerHTML=list.map(s=>`<div class="song"><div class="song-main"><div class="song-title">${esc(s.title)}</div><div class="song-artist">${esc(s.artist)}</div></div><div class="song-actions"><button class="primary tiny" onclick="mobilePickCatalog(${JSON.stringify(s.title).replace(/"/g,'&quot;')},${JSON.stringify(s.artist).replace(/"/g,'&quot;')})">Vybrať</button></div></div>`).join('')||'<div class="muted">Nič sa nenašlo.</div>';}
 function mobilePickCatalog(title,artist){$('mobileSong').value=title;$('mobileArtist').value=artist;$('mobileStatus').textContent='Vybrané: '+title+' — '+artist+'. Ak chceš automaticky nájsť karaoke, klikni na „Nájsť karaoke automaticky“, potom pridaj pieseň.';$('mobileSong').scrollIntoView({behavior:'smooth',block:'center'});}
 async function findYoutubeVideo(title, artist=''){
-  if(!YOUTUBE_API_KEY || YOUTUBE_API_KEY==='AIzaSyA65Z9thzbyon1pOpdPygrojrcP9ZoAViA'){
+   if(!YOUTUBE_API_KEY || YOUTUBE_API_KEY.trim()===''){
     throw new Error('YouTube API kľúč nie je vložený do index.html.');
   }
   const query=(title+' '+artist+' karaoke').trim();
