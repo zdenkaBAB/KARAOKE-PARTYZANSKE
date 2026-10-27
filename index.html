@@ -27,12 +27,12 @@
 <section class="panel" id="queuePanel"><div class="panel-head"><h3>📋 Spoločné poradie</h3><span class="tag" id="queueCount">0 piesní</span></div><div class="body"><div id="queue" class="queue"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="primary" id="playNext">▶ Spustiť / ďalšia</button><button class="secondary" id="stopBtn">■ Zastaviť</button><button class="danger" id="clearQueue">Vymazať poradie</button></div></div></section>
 <section class="panel" id="qrPanel"><div class="panel-head"><h3>📱 Pridávanie cez QR kód</h3><span class="tag" id="roomLabel">Miestnosť sa vytvorí po pripojení</span></div><div class="body"><div class="qrwrap"><div id="qrcode" class="qr">QR sa zobrazí po zverejnení aplikácie.</div><div style="flex:1;min-width:220px"><p><strong>Adresa na pridávanie piesní</strong></p><div id="joinUrl" style="overflow-wrap:anywhere;color:var(--green)">Najprv aplikáciu publikuj na verejnej HTTPS adrese.</div><button class="secondary" id="copyJoin" style="margin-top:8px">Kopírovať odkaz</button><p class="muted">QR funguje len vtedy, keď aplikácia beží na verejnej adrese a Firebase je nastavený.</p></div></div></div></section>
 </div></div>
-<section class="panel hidden" id="mobilePanel"><div class="panel-head"><h3>📱 Vyber pieseň do spoločného poradia</h3><span class="tag">Mobilný režim</span></div><div class="body"><div id="mobileStatus" class="status">Pripájam sa…</div><label for="mobileSinger">Tvoje meno</label><input id="mobileSinger" class="field" placeholder="Meno alebo prezývka"><h4 style="margin:18px 0 8px">Vyber z pripraveného katalógu</h4><input id="mobileCatalogSearch" class="field" placeholder="Hľadaj názov alebo interpreta…"><div id="mobileCatalog" class="catalog" style="margin-top:10px;max-height:330px;overflow:auto"></div><h4 style="margin:20px 0 8px">Alebo pridaj vlastnú pieseň z YouTube</h4><label for="mobileSong">Názov piesne</label><input id="mobileSong" class="field" placeholder="Názov piesne"><label for="mobileArtist" style="display:block;margin-top:10px">Interpret</label><input id="mobileArtist" class="field" placeholder="Interpret (ak vieš)"><label for="mobileVideoUrl" style="display:block;margin-top:10px">Presný odkaz na karaoke video (YouTube)</label><input id="mobileVideoUrl" class="field" placeholder="https://www.youtube.com/watch?v=…"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="primary" id="mobileAdd">＋ Pridať do poradia</button><button class="secondary" id="mobileSearch">Vyhľadať karaoke na YouTube</button></div><div class="muted" style="margin-top:12px">Ak pridáš konkrétny YouTube odkaz, notebook môže video spustiť priamo v aplikácii, pokiaľ autor povoľuje vložené prehrávanie. Bez odkazu sa do poradia pridá iba názov piesne.</div></div></section>
+<section class="panel hidden" id="mobilePanel"><div class="panel-head"><h3>📱 Vyber pieseň do spoločného poradia</h3><span class="tag">Mobilný režim</span></div><div class="body"><div id="mobileStatus" class="status">Pripájam sa…</div><label for="mobileSinger">Tvoje meno</label><input id="mobileSinger" class="field" placeholder="Meno alebo prezývka"><h4 style="margin:18px 0 8px">Vyber z pripraveného katalógu</h4><input id="mobileCatalogSearch" class="field" placeholder="Hľadaj názov alebo interpreta…"><div id="mobileCatalog" class="catalog" style="margin-top:10px;max-height:330px;overflow:auto"></div><h4 style="margin:20px 0 8px">Alebo pridaj vlastnú pieseň z YouTube</h4><label for="mobileSong">Názov piesne</label><input id="mobileSong" class="field" placeholder="Názov piesne"><label for="mobileArtist" style="display:block;margin-top:10px">Interpret</label><input id="mobileArtist" class="field" placeholder="Interpret (ak vieš)"><label for="mobileVideoUrl" style="display:block;margin-top:10px">Presný odkaz na karaoke video (YouTube)</label><input id="mobileVideoUrl" class="field" placeholder="https://www.youtube.com/watch?v=…"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="primary" id="mobileAdd">＋ Pridať do poradia</button><button class="secondary" id="mobileSearch">Nájsť karaoke automaticky</button></div><div class="muted" style="margin-top:12px">Ak pridáš konkrétny YouTube odkaz, notebook môže video spustiť priamo v aplikácii, pokiaľ autor povoľuje vložené prehrávanie. Bez odkazu sa do poradia pridá iba názov piesne.</div></div></section>
 <div class="footer">PARTYZANSKE KARAOKE HITS · YouTube videá sa prehrávajú vložene, ak to video povoľuje. Automatické vyhľadanie konkrétneho videa potrebuje YouTube Data API kľúč.</div>
 </div>
 <script>
 const PUBLIC_FIREBASE_CONFIG = {"apiKey": "AIzaSyAG2-4a3kXCI-CiSv6t1H9aVoI3XvrQiMc", "authDomain": "partyzanske---karaoke-2026.firebaseapp.com", "databaseURL": "https://partyzanske---karaoke-2026-default-rtdb.europe-west1.firebasedatabase.app", "projectId": "partyzanske---karaoke-2026", "storageBucket": "partyzanske---karaoke-2026.firebasestorage.app", "messagingSenderId": "978671665727", "appId": "1:978671665727:web:2565d43858f0e92c6c2e8a", "measurementId": "G-01M084VNKB"}; // Firebase web config projektu PARTYZANSKE KARAOKE 2026.
-const YOUTUBE_API_KEY = 'AIzaSyA65Z9thzbyon1pOpdPygrojrcP9ZoAViA'; // API key obmedzeny na GitHub Pages a YouTube Data API v3.
+const YOUTUBE_API_KEY = 'VLOZ_SEM_YOUTUBE_DATA_API_KLUC'; // API key obmedzeny na GitHub Pages a YouTube Data API v3.
 const SONGS=[{"title": "Dnes", "artist": "Tublatanka"}, {"title": "Voda čo ma drží nad vodou", "artist": "Elán"}, {"title": "Za dedinou", "artist": "IMT Smile"}, {"title": "Ľudia nie sú zlí", "artist": "IMT Smile"}, {"title": "Proklínam", "artist": "IMT Smile"}, {"title": "V piatok podvečer", "artist": "Hex"}, {"title": "Po schodoch", "artist": "Richard Müller"}, {"title": "Cigaretka na dva ťahy", "artist": "Richard Müller"}, {"title": "Čím to je", "artist": "No Name"}, {"title": "Spomaľ", "artist": "Peha"}, {"title": "Lekná", "artist": "No Name"}, {"title": "Čím to je", "artist": "No Name"}, {"title": "Žily", "artist": "No Name"}, {"title": "Láska, ty a tvoja sestra", "artist": "Elán"}, {"title": "Dancing Queen", "artist": "ABBA"}, {"title": "I Wanna Dance with Somebody", "artist": "Whitney Houston"}, {"title": "I Want It That Way", "artist": "Backstreet Boys"}, {"title": "Everybody", "artist": "Backstreet Boys"}, {"title": "Toxic", "artist": "Britney Spears"}, {"title": "Umbrella", "artist": "Lady Gaga (podľa zadania)"}, {"title": "Keď sa láska podarí", "artist": "Gladiator"}, {"title": "Nemôžem dýchať", "artist": "Gladiator"}, {"title": "Kúpim si pekný deň", "artist": "Gladiator"}, {"title": "Zombie", "artist": "The Cranberries"}, {"title": "Shallow", "artist": "Lady Gaga & Bradley Cooper"}, {"title": "Už len 22 dní", "artist": "Miro Žbirka"}, {"title": "Atlantída", "artist": "Miro Žbirka"}, {"title": "Vyznanie", "artist": "Marika Gombitová"}, {"title": "Mám ťa rád", "artist": "Karol Duchoň"}, {"title": "I Can Be Your Hero", "artist": "Enrique Iglesias"}, {"title": "...Baby One More Time", "artist": "Britney Spears"}, {"title": "Jenny from the Block", "artist": "Jennifer Lopez"}, {"title": "Biely kvet", "artist": "Miro Žbirka"}, {"title": "Koloseum", "artist": "Marika Gombitová"}, {"title": "Reklama na ticho", "artist": "Team"}, {"title": "Zanedbaný sex", "artist": "Elán"}, {"title": "Sestrička z Kramárov", "artist": "Elán"}, {"title": "Jožin z bažin", "artist": "Ivan Mládek"}, {"title": "Miki Mora – Čo?", "artist": "Miki Mora"}, {"title": "Loading", "artist": "Strapo"}, {"title": "Wannabe", "artist": "Spice Girls"}, {"title": "I'm Like a Bird", "artist": "Nelly Furtado"}, {"title": "I Want to Break Free", "artist": "Queen"}, {"title": "Angels", "artist": "Robbie Williams"}, {"title": "Cigarety", "artist": "Sara Rikas"}, {"title": "Call Me Maybe", "artist": "Carly Rae Jepsen"}, {"title": "Dragostea Din Tei", "artist": "O-Zone"}, {"title": "I Gotta Feeling", "artist": "The Black Eyed Peas"}, {"title": "Modrá", "artist": "Jana Kirschner"}, {"title": "Tam kde sa neumiera", "artist": "Zuzana Smatanová"}, {"title": "Pokoj v duši", "artist": "Jana Kirschner"}, {"title": "Líška", "artist": "Jana Kirschner"}, {"title": "Vráť mi tie hviezdy", "artist": "Beáta Dubasová"}, {"title": "Pena", "artist": "Helena Vrtichová"}, {"title": "Pod bielo alejou", "artist": "Gizka Oňová"}, {"title": "Lístoček z brezy", "artist": "Neznámy interpret – overiť"}, {"title": "Lekná", "artist": "No Name"}, {"title": "Exotika", "artist": "IMT Smile"}, {"title": "Nepoznám", "artist": "IMT Smile"}, {"title": "Let's Get Loud", "artist": "Jennifer Lopez"}, {"title": "Voda živá", "artist": "Aneta Langerová"}, {"title": "Kríž a na kríži chlap", "artist": "Nedvědi (podľa zadania)"}, {"title": "Chlap z kríža", "artist": "Sidi Tobias"}, {"title": "Na dlani jednu z tvojich rás", "artist": "Nedvědi"}, {"title": "Z kostela zvon", "artist": "Nedvědi (podľa zadania)"}, {"title": "Kým vieš snívať", "artist": "SuperStar"}, {"title": "Príbeh nekončí", "artist": "SuperStar"}];
 const $=id=>document.getElementById(id);
 const selectedVideoMap = new Map();
@@ -44,37 +44,43 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function searchUrl(t,a=''){return 'https://www.youtube.com/results?search_query='+encodeURIComponent((t+' '+a+' karaoke').trim());}
 function renderCatalog(){const q=$('search').value.toLocaleLowerCase('sk').trim();const list=SONGS.filter(s=>(s.title+' '+s.artist).toLocaleLowerCase('sk').includes(q));$('songCount').textContent=list.length+' skladieb';$('catalog').innerHTML=list.map((s,i)=>`<div class="song"><div class="song-main"><div class="song-title">${esc(s.title)}</div><div class="song-artist">${esc(s.artist)}</div></div><div class="song-actions"><button class="secondary tiny" onclick="searchYouTube(${JSON.stringify(s.title).replace(/"/g,'&quot;')},${JSON.stringify(s.artist).replace(/"/g,'&quot;')})">Nájsť video</button><button class="primary tiny" onclick="addCatalog(${JSON.stringify(s.title).replace(/"/g,'&quot;')},${JSON.stringify(s.artist).replace(/"/g,'&quot;')})">＋ Pridať</button></div></div>`).join('')||'<div class="muted">Nič sa nenašlo.</div>';renderMobileCatalog();}
 function renderMobileCatalog(){const el=$('mobileCatalog');if(!el)return;const q=($('mobileCatalogSearch')?.value||'').toLocaleLowerCase('sk').trim();const list=SONGS.filter(s=>(s.title+' '+s.artist).toLocaleLowerCase('sk').includes(q));el.innerHTML=list.map(s=>`<div class="song"><div class="song-main"><div class="song-title">${esc(s.title)}</div><div class="song-artist">${esc(s.artist)}</div></div><div class="song-actions"><button class="primary tiny" onclick="mobilePickCatalog(${JSON.stringify(s.title).replace(/"/g,'&quot;')},${JSON.stringify(s.artist).replace(/"/g,'&quot;')})">Vybrať</button></div></div>`).join('')||'<div class="muted">Nič sa nenašlo.</div>';}
-function mobilePickCatalog(title,artist){$('mobileSong').value=title;$('mobileArtist').value=artist;$('mobileStatus').textContent='Vybrané: '+title+' — '+artist+'. Ak chceš automaticky nájsť karaoke, klikni na „Vyhľadať karaoke na YouTube“, potom pridaj pieseň.';$('mobileSong').scrollIntoView({behavior:'smooth',block:'center'});}
-async function searchYouTube(t,a='',target='desktop'){
-  const query=(t+' '+a+' karaoke').trim();
-  if(!YOUTUBE_API_KEY || YOUTUBE_API_KEY==='AIzaSyA65Z9thzbyon1pOpdPygrojrcP9ZoAViA'){
-    window.open(searchUrl(t,a),'_blank','noopener');
-    $('playerStatus').textContent='YouTube API kľúč ešte nie je vložený do index.html. Otvorili sa výsledky YouTube.';
-    return;
+function mobilePickCatalog(title,artist){$('mobileSong').value=title;$('mobileArtist').value=artist;$('mobileStatus').textContent='Vybrané: '+title+' — '+artist+'. Ak chceš automaticky nájsť karaoke, klikni na „Nájsť karaoke automaticky“, potom pridaj pieseň.';$('mobileSong').scrollIntoView({behavior:'smooth',block:'center'});}
+async function findYoutubeVideo(title, artist=''){
+  if(!YOUTUBE_API_KEY || YOUTUBE_API_KEY==='VLOZ_SEM_YOUTUBE_DATA_API_KLUC'){
+    throw new Error('YouTube API kľúč nie je vložený do index.html.');
   }
+  const query=(title+' '+artist+' karaoke').trim();
+  const endpoint='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&videoEmbeddable=true&q='+encodeURIComponent(query)+'&key='+encodeURIComponent(YOUTUBE_API_KEY);
+  const response=await fetch(endpoint);
+  const data=await response.json();
+  if(!response.ok) throw new Error(data.error?.message||('HTTP '+response.status));
+  const items=(data.items||[]).filter(x=>x.id?.videoId);
+  if(!items.length) throw new Error('YouTube nenašiel vložiteľné video.');
+  // Vyberieme prvý výsledok. Používateľ môže neskôr skúsiť inú verziu, ak táto nefunguje.
+  return items[0];
+}
+async function searchYouTube(t,a='',target='desktop'){
   const status=target==='mobile' ? $('mobileStatus') : $('playerStatus');
-  status.textContent='Vyhľadávam karaoke videá na YouTube…';
+  status.textContent='Automaticky hľadám karaoke video: '+t+' — '+a+'…';
   try{
-    const endpoint='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&videoEmbeddable=true&q='+encodeURIComponent(query)+'&key='+encodeURIComponent(YOUTUBE_API_KEY);
-    const response=await fetch(endpoint);
-    const data=await response.json();
-    if(!response.ok) throw new Error(data.error?.message||('HTTP '+response.status));
-    const items=(data.items||[]).filter(x=>x.id?.videoId);
-    if(!items.length){status.textContent='Nenašla sa vhodná vložiteľná verzia. Otváram bežné výsledky YouTube.';window.open(searchUrl(t,a),'_blank','noopener');return;}
-    const menu=items.map((v,i)=>(i+1)+'. '+v.snippet.title+' — '+v.snippet.channelTitle).join('\n');
-    const choice=prompt('Vyber číslo karaoke videa pre '+t+' — '+a+':\n\n'+menu+'\n\nZadaj číslo 1–'+items.length+'.');
-    if(choice===null){status.textContent='Výber videa zrušený.';return;}
-    const n=Number(choice);
-    if(!Number.isInteger(n)||n<1||n>items.length){status.textContent='Neplatný výber. Skús vyhľadávanie znova.';return;}
-    const item=items[n-1], videoUrl='https://www.youtube.com/watch?v='+item.id.videoId;
+    const item=await findYoutubeVideo(t,a);
+    const videoUrl='https://www.youtube.com/watch?v='+item.id.videoId;
     selectedVideoMap.set(t+'|||'+a,videoUrl);
-    if(target==='mobile' && $('mobileVideoUrl')) $('mobileVideoUrl').value=videoUrl;
-    else $('videoUrl').value=videoUrl;
-    status.textContent='Vybrané video: '+item.snippet.title+'. Odkaz je pripravený.';
-    if(target==='mobile') status.textContent+=' Teraz klikni na „Pridať do poradia“.';
+    if(target==='mobile' && $('mobileVideoUrl')){
+      $('mobileVideoUrl').value=videoUrl;
+      status.textContent='Našla som: '+item.snippet.title+'. Odkaz je pripravený — teraz pridaj pieseň do poradia.';
+      return;
+    }
+    $('videoUrl').value=videoUrl;
+    if(playerReady){
+      player.loadVideoById(item.id.videoId);
+      $('playerTag').textContent='Prehráva sa: '+t;
+      status.textContent='Spúšťam: '+item.snippet.title+'. Ak to nie je správna karaoke verzia alebo sa video nedá vložiť, skús inú verziu.';
+    }else{
+      status.textContent='Našla som: '+item.snippet.title+', ale prehrávač sa ešte načítava. Klikni na Prehrať, keď bude pripravený.';
+    }
   }catch(e){
-    status.textContent='Automatické vyhľadávanie zlyhalo: '+e.message+'. Otváram bežné výsledky YouTube.';
-    window.open(searchUrl(t,a),'_blank','noopener');
+    status.textContent='Automatické vyhľadávanie zlyhalo: '+e.message+'. Skontroluj API kľúč a jeho obmedzenia v Google Cloud.';
   }
 }
 function addCatalog(title,artist){const name=isMobile?$('mobileSinger').value.trim():prompt('Kto bude túto pieseň spievať?');if(!name){if(isMobile)$('mobileStatus').textContent='Najprv zadaj svoje meno.';return;}const videoUrl=selectedVideoMap.get(title+'|||'+artist)||'';enqueue({title,artist,singer:name,videoUrl,addedAt:Date.now()});}
@@ -83,7 +89,24 @@ function renderQueue(){ $('queueCount').textContent=queue.length+' piesní';$('q
 function updateQueue(changes){if(!db)return;db.ref('rooms/'+room+'/queue').set(changes).catch(e=>alert('Chyba pri aktualizácii poradia: '+e.message));}
 function moveSong(i,delta){const arr=[...queue];const j=i+delta;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];updateQueue(arr.map((s,k)=>({...s,order:k})));}
 function removeSong(i){if(!confirm('Odstrániť túto pieseň z poradia?'))return;const arr=queue.filter((_,k)=>k!==i);updateQueue(arr);}
-function chooseVideo(i){const s=queue[i];if(!s)return;if(s.videoUrl){const savedId=extractId(s.videoUrl);if(savedId){startSong(s.id,savedId);return;}}const url=prompt('Vlož odkaz na konkrétne karaoke video na YouTube pre: '+s.title+' — '+s.artist);if(url){const id=extractId(url);if(!id){alert('Odkaz na YouTube video sa nepodarilo rozpoznať.');return;}db.ref('rooms/'+room+'/queue/'+s.id+'/videoUrl').set(url).then(()=>startSong(s.id,id));}}
+async function chooseVideo(i){
+  const s=queue[i]; if(!s)return;
+  if(s.videoUrl){
+    const savedId=extractId(s.videoUrl);
+    if(savedId){startSong(s.id,savedId);return;}
+  }
+  $('playerStatus').textContent='Automaticky hľadám karaoke pre '+s.title+' — '+(s.artist||'')+'…';
+  try{
+    const item=await findYoutubeVideo(s.title,s.artist||'');
+    const videoUrl='https://www.youtube.com/watch?v='+item.id.videoId;
+    await db.ref('rooms/'+room+'/queue/'+s.id+'/videoUrl').set(videoUrl);
+    $('videoUrl').value=videoUrl;
+    startSong(s.id,item.id.videoId);
+    $('playerStatus').textContent='Spúšťam: '+item.snippet.title+'. Ak je nesprávne alebo sa nedá vložiť, skús inú verziu.';
+  }catch(e){
+    $('playerStatus').textContent='Nepodarilo sa automaticky nájsť video: '+e.message+'. Skontroluj API kľúč a jeho obmedzenia.';
+  }
+}
 function extractId(raw){try{const u=new URL(raw.trim());if(u.hostname==='youtu.be')return u.pathname.split('/').filter(Boolean)[0]||'';if(u.hostname.includes('youtube.com')){if(u.pathname==='/watch')return u.searchParams.get('v')||'';const p=u.pathname.split('/').filter(Boolean);if(['embed','shorts','live'].includes(p[0]))return p[1]||'';}}catch(e){}return '';}
 function startSong(id,videoId){if(!playerReady){$('playerStatus').textContent='YouTube prehrávač sa ešte načítava. Skús o chvíľu znova.';return;}db.ref('rooms/'+room+'/queue').once('value').then(snap=>{const arr=Object.values(snap.val()||{});const selected=arr.find(s=>s.id===id);if(!selected)return;db.ref('rooms/'+room+'/queue').set(arr.map(s=>({...s,playing:s.id===id})));player.loadVideoById(videoId);$('playerTag').textContent='Prehráva sa: '+selected.title;$('playerStatus').textContent='Ak video nepodporuje vložené prehrávanie, vyber inú verziu.';});}
 function nextSong(){if(transitioning)return;transitioning=true;remaining=10;$('countdownPanel').classList.remove('hidden');$('countdown').textContent=remaining;$('playerTag').textContent='Výmena mikrofónu';clearInterval(countdownTimer);countdownTimer=setInterval(()=>{remaining--;$('countdown').textContent=remaining;if(remaining<=0){clearInterval(countdownTimer);transitioning=false;playNextFromQueue();}},1000);}
