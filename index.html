@@ -47,7 +47,7 @@ function renderMobileCatalog(){const el=$('mobileCatalog');if(!el)return;const q
 function mobilePickCatalog(title,artist){$('mobileSong').value=title;$('mobileArtist').value=artist;$('mobileStatus').textContent='Vybrané: '+title+' — '+artist+'. Ak chceš automaticky nájsť karaoke, klikni na „Vyhľadať karaoke na YouTube“, potom pridaj pieseň.';$('mobileSong').scrollIntoView({behavior:'smooth',block:'center'});}
 async function searchYouTube(t,a='',target='desktop'){
   const query=(t+' '+a+' karaoke').trim();
-  if(!YOUTUBE_API_KEY || YOUTUBE_API_KEY==='VLOZ_SEM_YOUTUBE_DATA_API_KLUC'){
+  if(!YOUTUBE_API_KEY || YOUTUBE_API_KEY==='AIzaSyA65Z9thzbyon1pOpdPygrojrcP9ZoAViA'){
     window.open(searchUrl(t,a),'_blank','noopener');
     $('playerStatus').textContent='YouTube API kľúč ešte nie je vložený do index.html. Otvorili sa výsledky YouTube.';
     return;
